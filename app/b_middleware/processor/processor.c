@@ -9,9 +9,10 @@
 void processor_init(void){
     hardware_init();
     usart_engine_init();
+    W25Q32_EraseChip();
+    delay_ms(100);
 }
 
 void processor(void){
     esp32_parse();      /*<! Hanlde command from ESP first */
-    delay_ms(300);
 }

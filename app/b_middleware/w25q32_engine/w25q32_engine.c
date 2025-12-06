@@ -1,5 +1,9 @@
 #include "w25q32_engine.h"
 
+/* ====================================== GLOBAL VARIABLES ======================================= */
+volatile uint32_t cur_w25_addr = 0x000000;                  /*<! 24bit addr */
+/* =============================================================================================== */
+
 /**
  * @brief  Read manufacurer ID and device ID
  * @param  manufacturer: Pointer to save manufacturer

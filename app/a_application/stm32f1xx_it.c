@@ -150,6 +150,7 @@ void USART1_IRQHandler(void)
     {
       uint8_t data = USART_ReceiveData(USART1);
       lwrb_write(&esp_usart_rb, &data, 1);
+      //DEBUG_PRINT("%02X", data);
     }
 }
 

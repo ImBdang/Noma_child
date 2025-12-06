@@ -2,6 +2,13 @@
 
 /* ====================================== GLOBAL VARIABES =========================================== */
 lwrb_t esp_usart_rb;
+
+extern ota_state_t ota_state;
+extern volatile uint32_t cur_w25_addr;
+extern uint32_t ota_total_size;
+extern uint32_t ota_received;
+extern uint8_t ota_buff[512];
+extern uint16_t data_idx;
 /* ================================================================================================== */
 
 /* ====================================== STATIC DECLARATIONS ======================================= */
@@ -15,11 +22,25 @@ void esp32_parse(void){
     static uint16_t line_len = 0;
     uint8_t c;
     while (lwrb_read(&esp_usart_rb, &c, 1)){
+        if (ota_state == OTA_READING_STATE) {
+            ota_buff[data_idx++] = c;
+            ota_received++;
+
+            if (data_idx == sizeof(ota_buff) || ota_received == ota_total_size) {
+                DEBUG_PRINT("Writing %d bytes to 0x%06lX\r\n", data_idx, cur_w25_addr);
+                W25Q32_WriteData(cur_w25_addr, ota_buff, data_idx);
+                DEBUG_PRINT("Write done\r\n");
+                cur_w25_addr += data_idx;
+                data_idx = 0;
+            }
+            if (ota_received >= ota_total_size) {
+                ota_state = OTA_DONE_STATE;
+            }
+            continue;
+        }
 
         if (line_len < sizeof(line_buff) - 1){
-            if (c != 0xFF){
-                line_buff[line_len++] = c;
-            }
+            line_buff[line_len++] = c;
         }
 
         if (c == '\n'){
@@ -31,12 +52,27 @@ void esp32_parse(void){
 }
 
 static void esp32_line_process(const char* esp32_line){
-    if (strstr(esp32_line, "OTA_ON")){
-        DEBUG_PRINT("OTA DETECT\r\n");
+
+    if (strstr(esp32_line, "OTA_BEGIN")){
+        DEBUG_PRINT("%s", esp32_line);
+        ota_state = OTA_WAIT_SIZE_STATE;
+        ota_total_size = 0;
+        ota_received = 0;
+        cur_w25_addr = 0x000000;
         return;
     }
-    if (strstr(esp32_line, "ESP32")){
-        DEBUG_PRINT("ESP32 hello\r\n");
+
+    if (strstr(esp32_line, "OTA_SIZE:")){
+        DEBUG_PRINT("%s", esp32_line);
+        ota_total_size = parse_ota_size(esp32_line);
+        DEBUG_PRINT("\r\nSIZE IS: %lu\r\n", ota_total_size);
+        ota_state = OTA_READING_STATE;
+        return;
+    }
+
+    if (strstr(esp32_line, "OTA_END")){
+        DEBUG_PRINT("%s", esp32_line);
+        ota_state = OTA_DONE_STATE;
         return;
     }
 }

@@ -49,6 +49,7 @@ INCDIR += ./b_middleware/processor
 INCDIR += ./b_middleware/usart_engine
 INCDIR += ./b_middleware/w25q32_engine
 INCDIR += ./b_middleware/debugger
+INCDIR += ./b_middleware/ota_engine
 
 #   HARDWARE
 INCDIR += ./c_hardware/CMSIS/inc
@@ -57,6 +58,7 @@ INCDIR += ./c_hardware/SPL/inc
 
 #   THIRD PARTY
 INCDIR += ./y_thirdparty/lwrb
+INCDIR += ./y_thirdparty/string_handler
 
 ####################################
 #           FIND SOURCE .C
@@ -112,7 +114,6 @@ LDFLAGS += -Wl,--no-warn-rwx-segments
 
 all: $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).hex
 	@echo "Build complete!"
-	@mv $(BUILD_DIR)/$(PROJECT).bin z_save/
 
 bin: $(BUILD_DIR)/$(PROJECT).bin
 

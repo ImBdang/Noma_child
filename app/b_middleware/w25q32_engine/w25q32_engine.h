@@ -57,6 +57,7 @@ void     W25Q32_EraseSector(uint32_t address);
 void     W25Q32_EraseChip(void);
 
 void     W25Q32_WritePage(uint32_t address, uint8_t *data, uint16_t size);
+void     W25Q32_WriteData(uint32_t addr, const uint8_t *buf, uint32_t len);
 void     W25Q32_ReadData(uint32_t address, uint8_t *buffer, uint32_t size);
 
 void     W25Q32_PowerDown(void);

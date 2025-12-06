@@ -38,6 +38,7 @@
 #include "systick.h"
 #include "lwrb.h"
 #include "stdint.h"
+#include "debugger.h"
 
 extern volatile uint32_t msTicks;
 extern lwrb_t esp_usart_rb;
