@@ -4,8 +4,10 @@
 /* ====================================== INCLUDE HEADER =============================== */
 #include "stm32f10x.h"
 #include "systick.h"
+#include "stdbool.h"
 #include "lwrb.h"
 #include "hardware.h"
+#include "w25q32_engine.h"
 #include "usart_engine.h"
 #include "debugger.h"
 /* ===================================================================================== */

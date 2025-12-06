@@ -3,8 +3,6 @@
 /**
  * @brief   Send string
  */
-
-// Trong debug_driver.c
 void debug_printf(const char* fmt, ...){
     char buffer[256];  // Buffer để format string
     va_list args;

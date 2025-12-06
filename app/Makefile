@@ -112,8 +112,10 @@ LDFLAGS += -Wl,--no-warn-rwx-segments
 
 all: $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).hex
 	@echo "Build complete!"
+	@mv $(BUILD_DIR)/$(PROJECT).bin z_save/
 
 bin: $(BUILD_DIR)/$(PROJECT).bin
+
 hex: $(BUILD_DIR)/$(PROJECT).hex
 
 # Application objects

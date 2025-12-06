@@ -12,9 +12,6 @@ void processor_init(void){
 }
 
 void processor(void){
-    GPIO_ResetBits(GPIOC, GPIO_Pin_13);   // LED ON
-    delay_ms(500);
-
-    GPIO_SetBits(GPIOC, GPIO_Pin_13);     // LED OFF
-    delay_ms(500);
+    esp32_parse();      /*<! Hanlde command from ESP first */
+    delay_ms(300);
 }

@@ -66,9 +66,22 @@ void W25Q32_EraseSector(uint32_t address) {
     SPI1_transfer_w25q32((address >> 8) & 0xFF);
     SPI1_transfer_w25q32(address & 0xFF);
     W25Q32_CS_HIGH();
-    
     W25Q32_WaitBusy();
 }
+
+/**
+ * @brief   Erase all chip
+ */
+void W25Q32_EraseChip(void) {
+    W25Q32_WaitBusy();
+    W25Q32_WriteEnable();
+    
+    W25Q32_CS_LOW();
+    SPI1_transfer_w25q32(W25Q32_CMD_CHIP_ERASE); 
+    W25Q32_CS_HIGH();
+    W25Q32_WaitBusy();
+}
+
 
 
 /**
@@ -97,6 +110,29 @@ void W25Q32_WritePage(uint32_t address, uint8_t *data, uint16_t size) {
     W25Q32_CS_HIGH();
     W25Q32_WaitBusy();
 }
+
+/**
+ * @brief   Use to write many data in to multi page
+ * 
+ * @param   addr: Addr where you start to write in w25
+ * @param   buff: Pointer of the fist data 
+ */
+void W25Q32_WriteData(uint32_t addr, const uint8_t *buf, uint32_t len) {
+    while (len > 0) {
+
+        uint32_t page_offset = addr % W25Q32_PAGE_SIZE;
+        uint32_t bytes_in_page = W25Q32_PAGE_SIZE - page_offset;
+
+        uint32_t write_now = (len < bytes_in_page) ? len : bytes_in_page;
+
+        W25Q32_WritePage(addr, (uint8_t*)buf, write_now);
+
+        addr += write_now;
+        buf  += write_now;
+        len  -= write_now;
+    }
+}
+
 
 /**
  * @brief  Normal mode
