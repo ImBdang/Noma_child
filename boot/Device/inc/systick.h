@@ -1,13 +1,11 @@
-#ifndef __PROCESSOR_H__
-#define __PROCESSOR_H__
+#ifndef __SYSTICK_H__
+#define __SYSTICK_H__
 
 /* ====================================== INCLUDE HEADER =============================== */
 #include "stm32f10x.h"
-#include "systick.h"
-#include "lwrb.h"
-#include "hardware.h"
-#include "usart_engine.h"
-#include "debugger.h"
+#include "stdint.h"
+#include "core_cm3.h"
+#include "system_stm32f10x.h"
 /* ===================================================================================== */
 
 /* ====================================== DEFINE ======================================= */
@@ -15,9 +13,10 @@
 
 
 /* ====================================== API ========================================== */
-void processor_init(void);
-
-void processor(void);
+uint32_t get_systick(void);
+void delay_ms(uint32_t ms);
+void systick_init(uint32_t ms);
+extern volatile uint32_t msTicks;
 /* ===================================================================================== */
 
-#endif /* __PROCESSOR_H__ */
+#endif /* __SYSTICK_H__ */

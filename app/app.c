@@ -1,12 +1,11 @@
 #include "stm32f10x.h"
+#include "processor.h"
 
 int main(void){
-
-  
-  
+  processor_init();
   while (1)
   {
-    /* code */
+    processor();
   }
   
   return 0;
