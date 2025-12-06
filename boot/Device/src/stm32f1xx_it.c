@@ -29,6 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_it.h"
+extern volatile uint32_t msTicks;
 
 /** @addtogroup IO_Toggle
   * @{
@@ -140,6 +141,17 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+  msTicks++;
+}
+
+/**
+  * @brief  This function handles USART1.
+  * @param  None
+  * @retval None
+  */
+void USART1_IRQHandler(void)
+{
+
 }
 
 /******************************************************************************/

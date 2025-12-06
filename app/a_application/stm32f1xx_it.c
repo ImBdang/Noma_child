@@ -29,6 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_it.h"
+extern volatile uint32_t msTicks;
 
 /** @addtogroup IO_Toggle
   * @{
@@ -140,7 +141,18 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+  msTicks++;
 }
+
+void USART1_IRQHandler(void)
+{
+    if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
+    {
+      uint8_t data = USART_ReceiveData(USART1);
+      lwrb_write(&esp_usart_rb, &data, 1);
+    }
+}
+
 
 /******************************************************************************/
 /*                 STM32F1xx Peripherals Interrupt Handlers                   */

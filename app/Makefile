@@ -45,7 +45,9 @@ INCDIR += ./a_application
 
 #   MIDDLEWARE
 INCDIR += ./b_middleware/spi_engine
-
+INCDIR += ./b_middleware/processor
+INCDIR += ./b_middleware/usart_engine
+INCDIR += ./b_middleware/w25q32_engine
 
 #   HARDWARE
 INCDIR += ./c_hardware/CMSIS/inc
