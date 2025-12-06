@@ -30,4 +30,4 @@ jobs:
           overwrite: true
 
           # Không xử lý tar, tránh tạo folder thay vì file
-          strip_components: 0
+          strip_components: 2
