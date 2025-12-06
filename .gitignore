@@ -1,3 +1,4 @@
 docs/
 boot/z_build/
 .vscode/
+*.txt

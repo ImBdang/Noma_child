@@ -19,5 +19,15 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_KEY }}
           port: 22
+
+          # Đường dẫn file BIN trong repo GitHub
           source: "app/z_build/app.bin"
-          target: ${{ secrets.SERVER_TARGET }}
+
+          # LUÔN để dấu '/' phía cuối để scp hiểu đây là thư mục
+          target: "/var/www/html/ota/"
+
+          # Cho phép ghi đè file cũ
+          overwrite: true
+
+          # Không xử lý tar, tránh tạo folder thay vì file
+          strip_components: 0
