@@ -180,6 +180,7 @@ void LED_Init(void)
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_Init(GPIOC, &GPIO_InitStructure);
+    GPIO_SetBits(LED_GPIO_Port, LED_Pin);
 }
 
 

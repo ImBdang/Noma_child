@@ -80,6 +80,7 @@ static void esp32_line_process(const char* esp32_line){
         DEBUG_PRINT("%s", esp32_line);
         ota_state = OTA_DONE_STATE;
         set_fw_flag(OTA_FLAG_READY);
+        NVIC_SystemReset(); 
         return;
     }
 }
