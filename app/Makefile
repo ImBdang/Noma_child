@@ -112,7 +112,7 @@ LDFLAGS += -Wl,--no-warn-rwx-segments
 
 .PHONY: all clean flash debug bin hex
 
-all: $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).hex
+all: $(BUILD_DIR)/$(PROJECT).elf $(BUILD_DIR)/$(PROJECT).bin $(BUILD_DIR)/$(PROJECT).hex $(BUILD_DIR)/$(PROJECT).bin
 	@echo "Build complete!"
 
 bin: $(BUILD_DIR)/$(PROJECT).bin
