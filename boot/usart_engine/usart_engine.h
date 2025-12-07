@@ -1,16 +1,10 @@
-#ifndef __PROCESSOR_H__
-#define __PROCESSOR_H__
+#ifndef __USART_H__
+#define __USART_H__
 
 /* ====================================== INCLUDE HEADER =============================== */
 #include "stm32f10x.h"
-#include "systick.h"
-#include "stdbool.h"
-#include "lwrb.h"
-#include "hardware.h"
-#include "w25q32_engine.h"
-#include "ota_engine.h"
-#include "usart_engine.h"
 #include "debugger.h"
+#include "w25q32_engine.h"
 /* ===================================================================================== */
 
 /* ====================================== DEFINE ======================================= */
@@ -18,9 +12,7 @@
 
 
 /* ====================================== API ========================================== */
-void processor_init(void);
-
-void processor(void);
+void usart_sendstring(USART_TypeDef *USARTx, const char *str);
 /* ===================================================================================== */
 
-#endif /* __PROCESSOR_H__ */
+#endif /* __USART_H__ */

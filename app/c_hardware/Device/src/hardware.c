@@ -172,6 +172,7 @@ static void Clock_72MHz_HSE_Init(void) {
 }
 
 void hardware_init(void){
+    SCB->VTOR = 0x08004000;
     Clock_72MHz_HSE_Init();
     systick_init(1000);
     W25Q32_SPI_Init();

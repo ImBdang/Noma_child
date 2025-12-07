@@ -40,7 +40,8 @@ void esp32_parse(void){
         }
 
         if (line_len < sizeof(line_buff) - 1){
-            line_buff[line_len++] = c;
+            if (c != 0xFF)
+                line_buff[line_len++] = c;
         }
 
         if (c == '\n'){
@@ -59,12 +60,17 @@ static void esp32_line_process(const char* esp32_line){
         ota_total_size = 0;
         ota_received = 0;
         cur_w25_addr = 0x000000;
+        W25Q32_EraseChip();
+        delay_ms(50);
         return;
     }
 
     if (strstr(esp32_line, "OTA_SIZE:")){
         DEBUG_PRINT("%s", esp32_line);
         ota_total_size = parse_ota_size(esp32_line);
+        if (ota_total_size == 0)
+            return;
+        set_fw_size(ota_total_size);
         DEBUG_PRINT("\r\nSIZE IS: %lu\r\n", ota_total_size);
         ota_state = OTA_READING_STATE;
         return;
@@ -73,6 +79,7 @@ static void esp32_line_process(const char* esp32_line){
     if (strstr(esp32_line, "OTA_END")){
         DEBUG_PRINT("%s", esp32_line);
         ota_state = OTA_DONE_STATE;
+        // set_fw_flag(OTA_FLAG_READY);
         return;
     }
 }

@@ -1,10 +1,10 @@
 #include "hardware.h"
 
 /* ====================================== STATIC DECLARATIONS ======================================= */
+static void W25Q32_SPI_Init(void);
 static void led_debug_init(void);
 static void Clock_72MHz_HSE_Init(void);
 /* ================================================================================================== */
-
 
 void USART_Debugger_Init(void)
 {
@@ -33,6 +33,55 @@ void USART_Debugger_Init(void)
 
     USART_Init(USART_DEBUGGER_PORT, &USART_InitStructure);
     USART_Cmd(USART_DEBUGGER_PORT, ENABLE);
+}
+
+
+/**
+ * @brief Init GPIOA and SPI1
+ * 
+ * @retval None
+ */
+void W25Q32_SPI_Init(void)
+{
+    RCC_APB2PeriphClockCmd(W25Q32_SPI_GPIO_CLK | W25Q32_SPI_CLK, ENABLE);
+
+    GPIO_InitTypeDef gpio_cs = {
+        .GPIO_Pin   = W25Q32_CS_PIN,
+        .GPIO_Speed = GPIO_Speed_50MHz,
+        .GPIO_Mode  = GPIO_Mode_Out_PP
+    };
+
+    GPIO_InitTypeDef gpio_sck_mosi = {
+        .GPIO_Pin   = W25Q32_SCK_PIN | W25Q32_MOSI_PIN,
+        .GPIO_Speed = GPIO_Speed_50MHz,
+        .GPIO_Mode  = GPIO_Mode_AF_PP
+    };
+
+    GPIO_InitTypeDef gpio_miso = {
+        .GPIO_Pin   = W25Q32_MISO_PIN,
+        .GPIO_Speed = GPIO_Speed_50MHz,
+        .GPIO_Mode  = GPIO_Mode_IN_FLOATING
+    };
+
+    GPIO_Init(W25Q32_SPI_GPIO_PORT, &gpio_cs);
+    GPIO_Init(W25Q32_SPI_GPIO_PORT, &gpio_sck_mosi);
+    GPIO_Init(W25Q32_SPI_GPIO_PORT, &gpio_miso);
+
+    W25Q32_CS_HIGH();
+
+    SPI_InitTypeDef spi_config = {
+        .SPI_Direction         = SPI_Direction_2Lines_FullDuplex,
+        .SPI_Mode              = SPI_Mode_Master,
+        .SPI_DataSize          = SPI_DataSize_8b,
+        .SPI_CPOL              = SPI_CPOL_Low,
+        .SPI_CPHA              = SPI_CPHA_1Edge,
+        .SPI_NSS               = SPI_NSS_Soft,
+        .SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_4,
+        .SPI_FirstBit          = SPI_FirstBit_MSB,
+        .SPI_CRCPolynomial     = 7
+    };
+    SPI_Init(W25Q32_SPI, &spi_config);
+    SPI_Cmd(W25Q32_SPI, ENABLE);
 }
 
 static void led_debug_init(void){
@@ -76,7 +125,6 @@ static void Clock_72MHz_HSE_Init(void) {
 }
 
 void hardware_init(void){
-    Clock_72MHz_HSE_Init();
-    systick_init(1000);
+    W25Q32_SPI_Init();
     USART_Debugger_Init();
 }
