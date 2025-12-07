@@ -33,4 +33,8 @@ void processor_init(void){
 
 void processor(void){
     esp32_parse();      /*<! Hanlde command from ESP first */
+    GPIO_ResetBits(LED_GPIO_Port, LED_Pin);
+    delay_ms(250);
+    GPIO_SetBits(LED_GPIO_Port, LED_Pin);
+    delay_ms(250);
 }

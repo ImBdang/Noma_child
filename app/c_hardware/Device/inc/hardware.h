@@ -60,6 +60,11 @@
 #define W25Q32_CS_LOW()                GPIO_ResetBits(W25Q32_SPI_GPIO_PORT, W25Q32_CS_PIN)
 #define W25Q32_CS_HIGH()               GPIO_SetBits(W25Q32_SPI_GPIO_PORT, W25Q32_CS_PIN)
 /* ================================================================================================== */
+
+#define LED_GPIO_Port                  GPIOC
+#define LED_Pin                        GPIO_Pin_13
+
+
 /* ===================================================================================== */
 
 

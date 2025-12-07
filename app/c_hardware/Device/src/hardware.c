@@ -5,6 +5,7 @@ static void W25Q32_SPI_Init(void);
 static void ESP32_USART_Init(void);
 static void led_debug_init(void);
 static void Clock_72MHz_HSE_Init(void);
+static void LED_Init(void);
 /* ================================================================================================== */
 
 void USART_Debugger_Init(void)
@@ -171,6 +172,17 @@ static void Clock_72MHz_HSE_Init(void) {
     SystemCoreClockUpdate();
 }
 
+void LED_Init(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+}
+
+
 void hardware_init(void){
     SCB->VTOR = 0x08004000;
     Clock_72MHz_HSE_Init();
@@ -178,4 +190,5 @@ void hardware_init(void){
     W25Q32_SPI_Init();
     ESP32_USART_Init();
     USART_Debugger_Init();
+    LED_Init();
 }
