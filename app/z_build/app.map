@@ -191,8 +191,6 @@ Discarded input sections
  .text          0x00000000        0x0 z_build/b_middleware/debugger/debugger.o
  .data          0x00000000        0x0 z_build/b_middleware/debugger/debugger.o
  .bss           0x00000000        0x0 z_build/b_middleware/debugger/debugger.o
- .rodata        0x00000000        0xd z_build/b_middleware/debugger/debugger.o
- .text.breakp   0x00000000       0x14 z_build/b_middleware/debugger/debugger.o
  .debug_macro   0x00000000      0xac6 z_build/b_middleware/debugger/debugger.o
  .debug_macro   0x00000000       0x22 z_build/b_middleware/debugger/debugger.o
  .debug_macro   0x00000000       0x8e z_build/b_middleware/debugger/debugger.o
@@ -774,6 +772,8 @@ Discarded input sections
  .text          0x00000000        0x0 z_build/c_hardware/Device/src/systick.o
  .data          0x00000000        0x0 z_build/c_hardware/Device/src/systick.o
  .bss           0x00000000        0x0 z_build/c_hardware/Device/src/systick.o
+ .text.delay_ms
+                0x00000000       0x30 z_build/c_hardware/Device/src/systick.o
  .text.get_systick_ms
                 0x00000000       0x14 z_build/c_hardware/Device/src/systick.o
  .debug_macro   0x00000000      0xac6 z_build/c_hardware/Device/src/systick.o
@@ -3495,7 +3495,7 @@ LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/
                 0x08004000                g_pfnVectors
                 0x0800410c                        . = ALIGN (0x4)
 
-.text           0x0800410c     0x29fc
+.text           0x0800410c     0x29e4
                 0x0800410c                        . = ALIGN (0x4)
  *(.text)
  *(.text*)
@@ -3540,435 +3540,436 @@ LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/
  .text.debug_printf
                 0x08004244       0x50 z_build/b_middleware/debugger/debugger.o
                 0x08004244                debug_printf
+ .text.breakp   0x08004294       0x14 z_build/b_middleware/debugger/debugger.o
+                0x08004294                breakp
  .text.ota_init
-                0x08004294       0x48 z_build/b_middleware/ota_engine/ota_engine.o
-                0x08004294                ota_init
+                0x080042a8       0x48 z_build/b_middleware/ota_engine/ota_engine.o
+                0x080042a8                ota_init
  .text.set_fw_size
-                0x080042dc       0x2c z_build/b_middleware/ota_engine/ota_engine.o
-                0x080042dc                set_fw_size
+                0x080042f0       0x2c z_build/b_middleware/ota_engine/ota_engine.o
+                0x080042f0                set_fw_size
  .text.set_fw_flag
-                0x08004308       0x3c z_build/b_middleware/ota_engine/ota_engine.o
-                0x08004308                set_fw_flag
+                0x0800431c       0x3c z_build/b_middleware/ota_engine/ota_engine.o
+                0x0800431c                set_fw_flag
  .text.processor_init
-                0x08004344       0x20 z_build/b_middleware/processor/processor.o
-                0x08004344                processor_init
+                0x08004358       0x20 z_build/b_middleware/processor/processor.o
+                0x08004358                processor_init
  .text.processor
-                0x08004364       0x30 z_build/b_middleware/processor/processor.o
-                0x08004364                processor
+                0x08004378        0xc z_build/b_middleware/processor/processor.o
+                0x08004378                processor
  .text.NVIC_SystemReset
-                0x08004394       0x2c z_build/b_middleware/usart_engine/usart_engine.o
+                0x08004384       0x2c z_build/b_middleware/usart_engine/usart_engine.o
  .text.esp32_parse
-                0x080043c0      0x128 z_build/b_middleware/usart_engine/usart_engine.o
-                0x080043c0                esp32_parse
+                0x080043b0      0x134 z_build/b_middleware/usart_engine/usart_engine.o
+                0x080043b0                esp32_parse
  .text.esp32_line_process
-                0x080044e8       0xe0 z_build/b_middleware/usart_engine/usart_engine.o
+                0x080044e4       0xfc z_build/b_middleware/usart_engine/usart_engine.o
  .text.usart_sendstring
-                0x080045c8       0x3e z_build/b_middleware/usart_engine/usart_engine.o
-                0x080045c8                usart_sendstring
- *fill*         0x08004606        0x2 
+                0x080045e0       0x3e z_build/b_middleware/usart_engine/usart_engine.o
+                0x080045e0                usart_sendstring
+ *fill*         0x0800461e        0x2 
  .text.usart_engine_init
-                0x08004608       0x1c z_build/b_middleware/usart_engine/usart_engine.o
-                0x08004608                usart_engine_init
+                0x08004620       0x1c z_build/b_middleware/usart_engine/usart_engine.o
+                0x08004620                usart_engine_init
  .text.W25Q32_ReadStatusReg
-                0x08004624       0x34 z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                0x08004624                W25Q32_ReadStatusReg
+                0x0800463c       0x34 z_build/b_middleware/w25q32_engine/w25q32_engine.o
+                0x0800463c                W25Q32_ReadStatusReg
  .text.W25Q32_WaitBusy
-                0x08004658       0x1a z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                0x08004658                W25Q32_WaitBusy
- *fill*         0x08004672        0x2 
+                0x08004670       0x1a z_build/b_middleware/w25q32_engine/w25q32_engine.o
+                0x08004670                W25Q32_WaitBusy
+ *fill*         0x0800468a        0x2 
  .text.W25Q32_WriteEnable
-                0x08004674       0x24 z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                0x08004674                W25Q32_WriteEnable
+                0x0800468c       0x24 z_build/b_middleware/w25q32_engine/w25q32_engine.o
+                0x0800468c                W25Q32_WriteEnable
  .text.W25Q32_EraseChip
-                0x08004698       0x30 z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                0x08004698                W25Q32_EraseChip
+                0x080046b0       0x30 z_build/b_middleware/w25q32_engine/w25q32_engine.o
+                0x080046b0                W25Q32_EraseChip
  .text.W25Q32_WritePage
-                0x080046c8       0x9c z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                0x080046c8                W25Q32_WritePage
+                0x080046e0       0x9c z_build/b_middleware/w25q32_engine/w25q32_engine.o
+                0x080046e0                W25Q32_WritePage
  .text.W25Q32_WriteData
-                0x08004764       0x5e z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                0x08004764                W25Q32_WriteData
- *fill*         0x080047c2        0x2 
+                0x0800477c       0x5e z_build/b_middleware/w25q32_engine/w25q32_engine.o
+                0x0800477c                W25Q32_WriteData
+ *fill*         0x080047da        0x2 
  .text.SPI1_transfer_w25q32
-                0x080047c4       0x48 z_build/b_middleware/spi_engine/spi_engine.o
-                0x080047c4                SPI1_transfer_w25q32
+                0x080047dc       0x48 z_build/b_middleware/spi_engine/spi_engine.o
+                0x080047dc                SPI1_transfer_w25q32
  .text.SystemInit
-                0x0800480c       0x68 z_build/c_hardware/Device/src/system_stm32f10x.o
-                0x0800480c                SystemInit
+                0x08004824       0x68 z_build/c_hardware/Device/src/system_stm32f10x.o
+                0x08004824                SystemInit
  .text.SystemCoreClockUpdate
-                0x08004874       0xe4 z_build/c_hardware/Device/src/system_stm32f10x.o
-                0x08004874                SystemCoreClockUpdate
+                0x0800488c       0xe4 z_build/c_hardware/Device/src/system_stm32f10x.o
+                0x0800488c                SystemCoreClockUpdate
  .text.SetSysClock
-                0x08004958        0xc z_build/c_hardware/Device/src/system_stm32f10x.o
+                0x08004970        0xc z_build/c_hardware/Device/src/system_stm32f10x.o
  .text.SetSysClockTo72
-                0x08004964      0x100 z_build/c_hardware/Device/src/system_stm32f10x.o
+                0x0800497c      0x100 z_build/c_hardware/Device/src/system_stm32f10x.o
  .text.NVIC_SetPriority
-                0x08004a64       0x54 z_build/c_hardware/Device/src/systick.o
+                0x08004a7c       0x54 z_build/c_hardware/Device/src/systick.o
  .text.SysTick_Config
-                0x08004ab8       0x44 z_build/c_hardware/Device/src/systick.o
+                0x08004ad0       0x44 z_build/c_hardware/Device/src/systick.o
  .text.systick_init
-                0x08004afc       0x30 z_build/c_hardware/Device/src/systick.o
-                0x08004afc                systick_init
- .text.delay_ms
-                0x08004b2c       0x30 z_build/c_hardware/Device/src/systick.o
-                0x08004b2c                delay_ms
+                0x08004b14       0x30 z_build/c_hardware/Device/src/systick.o
+                0x08004b14                systick_init
  .text.USART_Debugger_Init
-                0x08004b5c       0x80 z_build/c_hardware/Device/src/hardware.o
-                0x08004b5c                USART_Debugger_Init
+                0x08004b44       0x80 z_build/c_hardware/Device/src/hardware.o
+                0x08004b44                USART_Debugger_Init
  .text.ESP32_USART_Init
-                0x08004bdc       0x90 z_build/c_hardware/Device/src/hardware.o
+                0x08004bc4       0x90 z_build/c_hardware/Device/src/hardware.o
  .text.W25Q32_SPI_Init
-                0x08004c6c       0x90 z_build/c_hardware/Device/src/hardware.o
+                0x08004c54       0x90 z_build/c_hardware/Device/src/hardware.o
  .text.Clock_72MHz_HSE_Init
-                0x08004cfc       0x7e z_build/c_hardware/Device/src/hardware.o
- *fill*         0x08004d7a        0x2 
+                0x08004ce4       0x7e z_build/c_hardware/Device/src/hardware.o
+ *fill*         0x08004d62        0x2 
  .text.LED_Init
-                0x08004d7c       0x3c z_build/c_hardware/Device/src/hardware.o
+                0x08004d64       0x3c z_build/c_hardware/Device/src/hardware.o
  .text.hardware_init
-                0x08004db8       0x34 z_build/c_hardware/Device/src/hardware.o
-                0x08004db8                hardware_init
+                0x08004da0       0x34 z_build/c_hardware/Device/src/hardware.o
+                0x08004da0                hardware_init
  .text.RCC_DeInit
-                0x08004dec       0x5c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004dec                RCC_DeInit
+                0x08004dd4       0x5c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004dd4                RCC_DeInit
  .text.RCC_HSEConfig
-                0x08004e48       0x5c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004e48                RCC_HSEConfig
+                0x08004e30       0x5c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004e30                RCC_HSEConfig
  .text.RCC_WaitForHSEStartUp
-                0x08004ea4       0x50 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004ea4                RCC_WaitForHSEStartUp
+                0x08004e8c       0x50 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004e8c                RCC_WaitForHSEStartUp
  .text.RCC_PLLConfig
-                0x08004ef4       0x3c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004ef4                RCC_PLLConfig
+                0x08004edc       0x3c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004edc                RCC_PLLConfig
  .text.RCC_PLLCmd
-                0x08004f30       0x20 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004f30                RCC_PLLCmd
+                0x08004f18       0x20 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004f18                RCC_PLLCmd
  .text.RCC_SYSCLKConfig
-                0x08004f50       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004f50                RCC_SYSCLKConfig
+                0x08004f38       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004f38                RCC_SYSCLKConfig
  .text.RCC_GetSYSCLKSource
-                0x08004f88       0x1c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004f88                RCC_GetSYSCLKSource
+                0x08004f70       0x1c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004f70                RCC_GetSYSCLKSource
  .text.RCC_HCLKConfig
-                0x08004fa4       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004fa4                RCC_HCLKConfig
+                0x08004f8c       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004f8c                RCC_HCLKConfig
  .text.RCC_PCLK1Config
-                0x08004fdc       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08004fdc                RCC_PCLK1Config
+                0x08004fc4       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004fc4                RCC_PCLK1Config
  .text.RCC_PCLK2Config
-                0x08005014       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08005014                RCC_PCLK2Config
+                0x08004ffc       0x38 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08004ffc                RCC_PCLK2Config
  .text.RCC_GetClocksFreq
-                0x0800504c      0x16c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x0800504c                RCC_GetClocksFreq
+                0x08005034      0x16c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08005034                RCC_GetClocksFreq
  .text.RCC_APB2PeriphClockCmd
-                0x080051b8       0x3c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x080051b8                RCC_APB2PeriphClockCmd
+                0x080051a0       0x3c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x080051a0                RCC_APB2PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x080051f4       0x3c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x080051f4                RCC_APB1PeriphClockCmd
+                0x080051dc       0x3c z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x080051dc                RCC_APB1PeriphClockCmd
  .text.RCC_GetFlagStatus
-                0x08005230       0x74 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
-                0x08005230                RCC_GetFlagStatus
+                0x08005218       0x74 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08005218                RCC_GetFlagStatus
  .text.NVIC_Init
-                0x080052a4       0xc4 z_build/c_hardware/SPL/src/misc.o
-                0x080052a4                NVIC_Init
+                0x0800528c       0xc4 z_build/c_hardware/SPL/src/misc.o
+                0x0800528c                NVIC_Init
  .text.GPIO_Init
-                0x08005368      0x178 z_build/c_hardware/SPL/src/stm32f10x_gpio.o
-                0x08005368                GPIO_Init
+                0x08005350      0x178 z_build/c_hardware/SPL/src/stm32f10x_gpio.o
+                0x08005350                GPIO_Init
  .text.GPIO_SetBits
-                0x080054e0       0x1c z_build/c_hardware/SPL/src/stm32f10x_gpio.o
-                0x080054e0                GPIO_SetBits
+                0x080054c8       0x1c z_build/c_hardware/SPL/src/stm32f10x_gpio.o
+                0x080054c8                GPIO_SetBits
  .text.GPIO_ResetBits
-                0x080054fc       0x1c z_build/c_hardware/SPL/src/stm32f10x_gpio.o
-                0x080054fc                GPIO_ResetBits
+                0x080054e4       0x1c z_build/c_hardware/SPL/src/stm32f10x_gpio.o
+                0x080054e4                GPIO_ResetBits
  .text.FLASH_SetLatency
-                0x08005518       0x38 z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x08005518                FLASH_SetLatency
+                0x08005500       0x38 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x08005500                FLASH_SetLatency
  .text.FLASH_PrefetchBufferCmd
-                0x08005550       0x30 z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x08005550                FLASH_PrefetchBufferCmd
+                0x08005538       0x30 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x08005538                FLASH_PrefetchBufferCmd
  .text.FLASH_Unlock
-                0x08005580       0x24 z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x08005580                FLASH_Unlock
+                0x08005568       0x24 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x08005568                FLASH_Unlock
  .text.FLASH_Lock
-                0x080055a4       0x1c z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x080055a4                FLASH_Lock
+                0x0800558c       0x1c z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x0800558c                FLASH_Lock
  .text.FLASH_ErasePage
-                0x080055c0       0x64 z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x080055c0                FLASH_ErasePage
+                0x080055a8       0x64 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x080055a8                FLASH_ErasePage
  .text.FLASH_ProgramWord
-                0x08005624       0x94 z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x08005624                FLASH_ProgramWord
+                0x0800560c       0x94 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x0800560c                FLASH_ProgramWord
  .text.FLASH_ClearFlag
-                0x080056b8       0x1c z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x080056b8                FLASH_ClearFlag
+                0x080056a0       0x1c z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x080056a0                FLASH_ClearFlag
  .text.FLASH_GetBank1Status
-                0x080056d4       0x54 z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x080056d4                FLASH_GetBank1Status
+                0x080056bc       0x54 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x080056bc                FLASH_GetBank1Status
  .text.FLASH_WaitForLastOperation
-                0x08005728       0x44 z_build/c_hardware/SPL/src/stm32f10x_flash.o
-                0x08005728                FLASH_WaitForLastOperation
+                0x08005710       0x44 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+                0x08005710                FLASH_WaitForLastOperation
  .text.USART_Init
-                0x0800576c      0x174 z_build/c_hardware/SPL/src/stm32f10x_usart.o
-                0x0800576c                USART_Init
+                0x08005754      0x174 z_build/c_hardware/SPL/src/stm32f10x_usart.o
+                0x08005754                USART_Init
  .text.USART_Cmd
-                0x080058e0       0x3e z_build/c_hardware/SPL/src/stm32f10x_usart.o
-                0x080058e0                USART_Cmd
+                0x080058c8       0x3e z_build/c_hardware/SPL/src/stm32f10x_usart.o
+                0x080058c8                USART_Cmd
  .text.USART_ITConfig
-                0x0800591e       0x8e z_build/c_hardware/SPL/src/stm32f10x_usart.o
-                0x0800591e                USART_ITConfig
+                0x08005906       0x8e z_build/c_hardware/SPL/src/stm32f10x_usart.o
+                0x08005906                USART_ITConfig
  .text.USART_SendData
-                0x080059ac       0x22 z_build/c_hardware/SPL/src/stm32f10x_usart.o
-                0x080059ac                USART_SendData
+                0x08005994       0x22 z_build/c_hardware/SPL/src/stm32f10x_usart.o
+                0x08005994                USART_SendData
  .text.USART_ReceiveData
-                0x080059ce       0x1e z_build/c_hardware/SPL/src/stm32f10x_usart.o
-                0x080059ce                USART_ReceiveData
+                0x080059b6       0x1e z_build/c_hardware/SPL/src/stm32f10x_usart.o
+                0x080059b6                USART_ReceiveData
  .text.USART_GetFlagStatus
-                0x080059ec       0x36 z_build/c_hardware/SPL/src/stm32f10x_usart.o
-                0x080059ec                USART_GetFlagStatus
+                0x080059d4       0x36 z_build/c_hardware/SPL/src/stm32f10x_usart.o
+                0x080059d4                USART_GetFlagStatus
  .text.USART_GetITStatus
-                0x08005a22       0xb4 z_build/c_hardware/SPL/src/stm32f10x_usart.o
-                0x08005a22                USART_GetITStatus
+                0x08005a0a       0xb4 z_build/c_hardware/SPL/src/stm32f10x_usart.o
+                0x08005a0a                USART_GetITStatus
  .text.SPI_Init
-                0x08005ad6       0x86 z_build/c_hardware/SPL/src/stm32f10x_spi.o
-                0x08005ad6                SPI_Init
- .text.SPI_Cmd  0x08005b5c       0x3e z_build/c_hardware/SPL/src/stm32f10x_spi.o
-                0x08005b5c                SPI_Cmd
+                0x08005abe       0x86 z_build/c_hardware/SPL/src/stm32f10x_spi.o
+                0x08005abe                SPI_Init
+ .text.SPI_Cmd  0x08005b44       0x3e z_build/c_hardware/SPL/src/stm32f10x_spi.o
+                0x08005b44                SPI_Cmd
  .text.SPI_I2S_SendData
-                0x08005b9a       0x1c z_build/c_hardware/SPL/src/stm32f10x_spi.o
-                0x08005b9a                SPI_I2S_SendData
+                0x08005b82       0x1c z_build/c_hardware/SPL/src/stm32f10x_spi.o
+                0x08005b82                SPI_I2S_SendData
  .text.SPI_I2S_ReceiveData
-                0x08005bb6       0x18 z_build/c_hardware/SPL/src/stm32f10x_spi.o
-                0x08005bb6                SPI_I2S_ReceiveData
+                0x08005b9e       0x18 z_build/c_hardware/SPL/src/stm32f10x_spi.o
+                0x08005b9e                SPI_I2S_ReceiveData
  .text.SPI_I2S_GetFlagStatus
-                0x08005bce       0x36 z_build/c_hardware/SPL/src/stm32f10x_spi.o
-                0x08005bce                SPI_I2S_GetFlagStatus
+                0x08005bb6       0x36 z_build/c_hardware/SPL/src/stm32f10x_spi.o
+                0x08005bb6                SPI_I2S_GetFlagStatus
  .text.fast_atoi
-                0x08005c04       0x46 z_build/y_thirdparty/string_handler/string_handler.o
-                0x08005c04                fast_atoi
+                0x08005bec       0x46 z_build/y_thirdparty/string_handler/string_handler.o
+                0x08005bec                fast_atoi
  .text.parse_ota_size
-                0x08005c4a       0x34 z_build/y_thirdparty/string_handler/string_handler.o
-                0x08005c4a                parse_ota_size
+                0x08005c32       0x34 z_build/y_thirdparty/string_handler/string_handler.o
+                0x08005c32                parse_ota_size
  .text.lwrb_init
-                0x08005c7e       0x60 z_build/y_thirdparty/lwrb/lwrb.o
-                0x08005c7e                lwrb_init
+                0x08005c66       0x60 z_build/y_thirdparty/lwrb/lwrb.o
+                0x08005c66                lwrb_init
  .text.lwrb_write
-                0x08005cde       0x36 z_build/y_thirdparty/lwrb/lwrb.o
-                0x08005cde                lwrb_write
+                0x08005cc6       0x36 z_build/y_thirdparty/lwrb/lwrb.o
+                0x08005cc6                lwrb_write
  .text.lwrb_write_ex
-                0x08005d14      0x130 z_build/y_thirdparty/lwrb/lwrb.o
-                0x08005d14                lwrb_write_ex
+                0x08005cfc      0x130 z_build/y_thirdparty/lwrb/lwrb.o
+                0x08005cfc                lwrb_write_ex
  .text.lwrb_read
-                0x08005e44       0x36 z_build/y_thirdparty/lwrb/lwrb.o
-                0x08005e44                lwrb_read
+                0x08005e2c       0x36 z_build/y_thirdparty/lwrb/lwrb.o
+                0x08005e2c                lwrb_read
  .text.lwrb_read_ex
-                0x08005e7a      0x130 z_build/y_thirdparty/lwrb/lwrb.o
-                0x08005e7a                lwrb_read_ex
+                0x08005e62      0x130 z_build/y_thirdparty/lwrb/lwrb.o
+                0x08005e62                lwrb_read_ex
  .text.lwrb_get_free
-                0x08005faa       0x7c z_build/y_thirdparty/lwrb/lwrb.o
-                0x08005faa                lwrb_get_free
+                0x08005f92       0x7c z_build/y_thirdparty/lwrb/lwrb.o
+                0x08005f92                lwrb_get_free
  .text.lwrb_get_full
-                0x08006026       0x7a z_build/y_thirdparty/lwrb/lwrb.o
-                0x08006026                lwrb_get_full
- .text.main     0x080060a0        0xe z_build/root/app.o
-                0x080060a0                main
- *fill*         0x080060ae        0x2 
+                0x0800600e       0x7a z_build/y_thirdparty/lwrb/lwrb.o
+                0x0800600e                lwrb_get_full
+ .text.main     0x08006088        0xe z_build/root/app.o
+                0x08006088                main
+ *fill*         0x08006096        0x2 
  .text.Reset_Handler
-                0x080060b0       0x50 z_build/startup/startup.o
-                0x080060b0                Reset_Handler
+                0x08006098       0x50 z_build/startup/startup.o
+                0x08006098                Reset_Handler
  .text.Default_Handler
-                0x08006100        0x2 z_build/startup/startup.o
-                0x08006100                EXTI2_IRQHandler
-                0x08006100                TIM1_CC_IRQHandler
-                0x08006100                PVD_IRQHandler
-                0x08006100                EXTI3_IRQHandler
-                0x08006100                EXTI0_IRQHandler
-                0x08006100                I2C2_EV_IRQHandler
-                0x08006100                ADC1_2_IRQHandler
-                0x08006100                SPI1_IRQHandler
-                0x08006100                TAMPER_IRQHandler
-                0x08006100                DMA1_Channel4_IRQHandler
-                0x08006100                USART3_IRQHandler
-                0x08006100                RTC_IRQHandler
-                0x08006100                DMA1_Channel7_IRQHandler
-                0x08006100                CAN1_RX1_IRQHandler
-                0x08006100                TIM4_IRQHandler
-                0x08006100                I2C1_EV_IRQHandler
-                0x08006100                DMA1_Channel6_IRQHandler
-                0x08006100                TIM3_IRQHandler
-                0x08006100                RCC_IRQHandler
-                0x08006100                TIM1_TRG_COM_IRQHandler
-                0x08006100                DMA1_Channel1_IRQHandler
-                0x08006100                Default_Handler
-                0x08006100                EXTI15_10_IRQHandler
-                0x08006100                EXTI9_5_IRQHandler
-                0x08006100                SPI2_IRQHandler
-                0x08006100                DMA1_Channel5_IRQHandler
-                0x08006100                EXTI4_IRQHandler
-                0x08006100                USB_LP_CAN1_RX0_IRQHandler
-                0x08006100                USB_HP_CAN1_TX_IRQHandler
-                0x08006100                DMA1_Channel3_IRQHandler
-                0x08006100                TIM1_UP_IRQHandler
-                0x08006100                WWDG_IRQHandler
-                0x08006100                TIM2_IRQHandler
-                0x08006100                TIM1_BRK_IRQHandler
-                0x08006100                EXTI1_IRQHandler
-                0x08006100                RTCAlarm_IRQHandler
-                0x08006100                USART2_IRQHandler
-                0x08006100                I2C2_ER_IRQHandler
-                0x08006100                DMA1_Channel2_IRQHandler
-                0x08006100                CAN1_SCE_IRQHandler
-                0x08006100                FLASH_IRQHandler
-                0x08006100                I2C1_ER_IRQHandler
-                0x08006100                USBWakeUp_IRQHandler
+                0x080060e8        0x2 z_build/startup/startup.o
+                0x080060e8                EXTI2_IRQHandler
+                0x080060e8                TIM1_CC_IRQHandler
+                0x080060e8                PVD_IRQHandler
+                0x080060e8                EXTI3_IRQHandler
+                0x080060e8                EXTI0_IRQHandler
+                0x080060e8                I2C2_EV_IRQHandler
+                0x080060e8                ADC1_2_IRQHandler
+                0x080060e8                SPI1_IRQHandler
+                0x080060e8                TAMPER_IRQHandler
+                0x080060e8                DMA1_Channel4_IRQHandler
+                0x080060e8                USART3_IRQHandler
+                0x080060e8                RTC_IRQHandler
+                0x080060e8                DMA1_Channel7_IRQHandler
+                0x080060e8                CAN1_RX1_IRQHandler
+                0x080060e8                TIM4_IRQHandler
+                0x080060e8                I2C1_EV_IRQHandler
+                0x080060e8                DMA1_Channel6_IRQHandler
+                0x080060e8                TIM3_IRQHandler
+                0x080060e8                RCC_IRQHandler
+                0x080060e8                TIM1_TRG_COM_IRQHandler
+                0x080060e8                DMA1_Channel1_IRQHandler
+                0x080060e8                Default_Handler
+                0x080060e8                EXTI15_10_IRQHandler
+                0x080060e8                EXTI9_5_IRQHandler
+                0x080060e8                SPI2_IRQHandler
+                0x080060e8                DMA1_Channel5_IRQHandler
+                0x080060e8                EXTI4_IRQHandler
+                0x080060e8                USB_LP_CAN1_RX0_IRQHandler
+                0x080060e8                USB_HP_CAN1_TX_IRQHandler
+                0x080060e8                DMA1_Channel3_IRQHandler
+                0x080060e8                TIM1_UP_IRQHandler
+                0x080060e8                WWDG_IRQHandler
+                0x080060e8                TIM2_IRQHandler
+                0x080060e8                TIM1_BRK_IRQHandler
+                0x080060e8                EXTI1_IRQHandler
+                0x080060e8                RTCAlarm_IRQHandler
+                0x080060e8                USART2_IRQHandler
+                0x080060e8                I2C2_ER_IRQHandler
+                0x080060e8                DMA1_Channel2_IRQHandler
+                0x080060e8                CAN1_SCE_IRQHandler
+                0x080060e8                FLASH_IRQHandler
+                0x080060e8                I2C1_ER_IRQHandler
+                0x080060e8                USBWakeUp_IRQHandler
  .text._vsnprintf_r
-                0x08006102       0x5c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-vsnprintf.o)
-                0x08006102                _vsnprintf_r
-                0x08006102                _vsniprintf_r
- *fill*         0x0800615e        0x2 
+                0x080060ea       0x5c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-vsnprintf.o)
+                0x080060ea                _vsnprintf_r
+                0x080060ea                _vsniprintf_r
+ *fill*         0x08006146        0x2 
  .text.vsnprintf
-                0x08006160       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-vsnprintf.o)
-                0x08006160                vsnprintf
-                0x08006160                vsniprintf
- .text.strchr   0x0800617c       0x1a /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strchr.o)
-                0x0800617c                strchr
- .text.strstr   0x08006196       0x2c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strstr.o)
-                0x08006196                strstr
- *fill*         0x080061c2        0x2 
+                0x08006148       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-vsnprintf.o)
+                0x08006148                vsnprintf
+                0x08006148                vsniprintf
+ .text.strchr   0x08006164       0x1a /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strchr.o)
+                0x08006164                strchr
+ .text.strstr   0x0800617e       0x2c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-strstr.o)
+                0x0800617e                strstr
+ *fill*         0x080061aa        0x2 
  .text.__libc_init_array
-                0x080061c4       0x48 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-init.o)
-                0x080061c4                __libc_init_array
+                0x080061ac       0x48 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-init.o)
+                0x080061ac                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x0800620c        0x2 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-lock.o)
-                0x0800620c                __retarget_lock_acquire_recursive
+                0x080061f4        0x2 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-lock.o)
+                0x080061f4                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x0800620e        0x2 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-lock.o)
-                0x0800620e                __retarget_lock_release_recursive
- .text.memcpy   0x08006210       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memcpy-stub.o)
-                0x08006210                memcpy
- .text._free_r  0x0800622c       0x90 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-freer.o)
-                0x0800622c                _free_r
+                0x080061f6        0x2 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-lock.o)
+                0x080061f6                __retarget_lock_release_recursive
+ .text.memcpy   0x080061f8       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memcpy-stub.o)
+                0x080061f8                memcpy
+ .text._free_r  0x08006214       0x90 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-freer.o)
+                0x08006214                _free_r
  .text.sbrk_aligned
-                0x080062bc       0x44 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mallocr.o)
+                0x080062a4       0x44 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mallocr.o)
  .text._malloc_r
-                0x08006300      0x100 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mallocr.o)
-                0x08006300                _malloc_r
+                0x080062e8      0x100 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mallocr.o)
+                0x080062e8                _malloc_r
  .text.__malloc_lock
-                0x08006400        0xc /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mlock.o)
-                0x08006400                __malloc_lock
+                0x080063e8        0xc /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mlock.o)
+                0x080063e8                __malloc_lock
  .text.__malloc_unlock
-                0x0800640c        0xc /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mlock.o)
-                0x0800640c                __malloc_unlock
+                0x080063f4        0xc /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-mlock.o)
+                0x080063f4                __malloc_unlock
  .text.__ssputs_r
-                0x08006418       0xc0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-svfprintf.o)
-                0x08006418                __ssputs_r
+                0x08006400       0xc0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-svfprintf.o)
+                0x08006400                __ssputs_r
  .text._svfprintf_r
-                0x080064d8      0x1f0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-svfprintf.o)
-                0x080064d8                _svfprintf_r
-                0x080064d8                _svfiprintf_r
+                0x080064c0      0x1f0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-svfprintf.o)
+                0x080064c0                _svfprintf_r
+                0x080064c0                _svfiprintf_r
  .text._printf_common
-                0x080066c8       0xe4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-vfprintf_i.o)
-                0x080066c8                _printf_common
+                0x080066b0       0xe4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x080066b0                _printf_common
  .text._printf_i
-                0x080067ac      0x24c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-vfprintf_i.o)
-                0x080067ac                _printf_i
- .text.memmove  0x080069f8       0x32 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memmove.o)
-                0x080069f8                memmove
- *fill*         0x08006a2a        0x2 
- .text._sbrk_r  0x08006a2c       0x20 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-sbrkr.o)
-                0x08006a2c                _sbrk_r
- .text.memchr   0x08006a4c       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memchr-stub.o)
-                0x08006a4c                memchr
+                0x08006794      0x24c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x08006794                _printf_i
+ .text.memmove  0x080069e0       0x32 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memmove.o)
+                0x080069e0                memmove
+ *fill*         0x08006a12        0x2 
+ .text._sbrk_r  0x08006a14       0x20 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-sbrkr.o)
+                0x08006a14                _sbrk_r
+ .text.memchr   0x08006a34       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-memchr-stub.o)
+                0x08006a34                memchr
  .text._realloc_r
-                0x08006a68       0x5c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-reallocr.o)
-                0x08006a68                _realloc_r
+                0x08006a50       0x5c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-reallocr.o)
+                0x08006a50                _realloc_r
  .text._malloc_usable_size_r
-                0x08006ac4       0x10 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-msizer.o)
-                0x08006ac4                _malloc_usable_size_r
- .text._sbrk    0x08006ad4       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
-                0x08006ad4                _sbrk
+                0x08006aac       0x10 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-msizer.o)
+                0x08006aac                _malloc_usable_size_r
+ .text._sbrk    0x08006abc       0x1c /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
+                0x08006abc                _sbrk
  *(.glue_7)
- .glue_7        0x08006af0        0x0 linker stubs
+ .glue_7        0x08006ad8        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08006af0        0x0 linker stubs
+ .glue_7t       0x08006ad8        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08006af0        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x08006ad8        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
  *(.init)
- .init          0x08006af0        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
-                0x08006af0                _init
- .init          0x08006af4        0x8 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
+ .init          0x08006ad8        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
+                0x08006ad8                _init
+ .init          0x08006adc        0x8 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
  *(.fini)
- .fini          0x08006afc        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
-                0x08006afc                _fini
- .fini          0x08006b00        0x8 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
-                0x08006b08                        . = ALIGN (0x4)
-                0x08006b08                        _etext = .
+ .fini          0x08006ae4        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crti.o
+                0x08006ae4                _fini
+ .fini          0x08006ae8        0x8 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtn.o
+                0x08006af0                        . = ALIGN (0x4)
+                0x08006af0                        _etext = .
 
-.vfp11_veneer   0x08006b08        0x0
- .vfp11_veneer  0x08006b08        0x0 linker stubs
+.vfp11_veneer   0x08006af0        0x0
+ .vfp11_veneer  0x08006af0        0x0 linker stubs
 
-.v4_bx          0x08006b08        0x0
- .v4_bx         0x08006b08        0x0 linker stubs
+.v4_bx          0x08006af0        0x0
+ .v4_bx         0x08006af0        0x0 linker stubs
 
-.iplt           0x08006b08        0x0
- .iplt          0x08006b08        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+.iplt           0x08006af0        0x0
+ .iplt          0x08006af0        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.rodata         0x08006b08      0x15c
-                0x08006b08                        . = ALIGN (0x4)
+.rodata         0x08006af0      0x198
+                0x08006af0                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08006b08       0x5d z_build/b_middleware/processor/processor.o
- *fill*         0x08006b65        0x3 
- .rodata        0x08006b68       0x68 z_build/b_middleware/usart_engine/usart_engine.o
- .rodata        0x08006bd0       0x3a z_build/c_hardware/Device/src/hardware.o
+ .rodata        0x08006af0        0xd z_build/b_middleware/debugger/debugger.o
+ *fill*         0x08006afd        0x3 
+ .rodata        0x08006b00       0x5d z_build/b_middleware/processor/processor.o
+ *fill*         0x08006b5d        0x3 
+ .rodata        0x08006b60       0x94 z_build/b_middleware/usart_engine/usart_engine.o
+ .rodata        0x08006bf4       0x3a z_build/c_hardware/Device/src/hardware.o
  *(.rodata*)
- *fill*         0x08006c0a        0x2 
+ *fill*         0x08006c2e        0x2 
  .rodata.AHBPrescTable
-                0x08006c0c       0x10 z_build/c_hardware/Device/src/system_stm32f10x.o
-                0x08006c0c                AHBPrescTable
+                0x08006c30       0x10 z_build/c_hardware/Device/src/system_stm32f10x.o
+                0x08006c30                AHBPrescTable
  .rodata.APBAHBPrescTable
-                0x08006c1c       0x10 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08006c40       0x10 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
  .rodata.ADCPrescTable
-                0x08006c2c        0x4 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+                0x08006c50        0x4 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
  .rodata._svfprintf_r.str1.1
-                0x08006c30       0x33 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-svfprintf.o)
+                0x08006c54       0x33 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-svfprintf.o)
                                  0x11 (size before relaxing)
  .rodata._printf_i.str1.1
-                0x08006c63       0x22 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-vfprintf_i.o)
-                0x08006c88                        . = ALIGN (0x4)
- *fill*         0x08006c63        0x1 
+                0x08006c87       0x22 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x08006cac                        . = ALIGN (0x4)
+ *fill*         0x08006c87        0x1 
 
-.rel.dyn        0x08006c64        0x0
- .rel.iplt      0x08006c64        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+.rel.dyn        0x08006c88        0x0
+ .rel.iplt      0x08006c88        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08006c64        0x0
-                0x08006c64                        __exidx_start = .
+.ARM            0x08006c88        0x0
+                0x08006c88                        __exidx_start = .
  *(.ARM.exidx*)
-                0x08006c64                        __exidx_end = .
+                0x08006c88                        __exidx_end = .
 
-.preinit_array  0x08006c64        0x0
-                0x08006c64                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x08006c88        0x0
+                0x08006c88                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08006c64                        PROVIDE (__preinit_array_end = .)
+                0x08006c88                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x08006c64        0x4
-                0x08006c64                        PROVIDE (__init_array_start = .)
+.init_array     0x08006c88        0x4
+                0x08006c88                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x08006c64        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
-                0x08006c68                        PROVIDE (__init_array_end = .)
+ .init_array    0x08006c88        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+                0x08006c8c                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x08006c68        0x4
+.fini_array     0x08006c8c        0x4
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08006c68        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
+ .fini_array    0x08006c8c        0x4 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x08006c6c                        _sidata = LOADADDR (.data)
+                0x08006c90                        _sidata = LOADADDR (.data)
 
-.data           0x20000000       0x54 load address 0x08006c6c
+.data           0x20000000       0x54 load address 0x08006c90
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -3986,17 +3987,17 @@ LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/
                 0x20000054                        _edata = .
 
 .tm_clone_table
-                0x20000054        0x0 load address 0x08006cc0
+                0x20000054        0x0 load address 0x08006ce4
  .tm_clone_table
                 0x20000054        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
  .tm_clone_table
                 0x20000054        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtend.o
 
-.igot.plt       0x20000054        0x0 load address 0x08006cc0
+.igot.plt       0x20000054        0x0 load address 0x08006ce4
  .igot.plt      0x20000054        0x0 /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/crtbegin.o
                 0x20000054                        . = ALIGN (0x4)
 
-.bss            0x20000054      0xda4 load address 0x08006cc0
+.bss            0x20000054      0xda4 load address 0x08006ce4
                 0x20000054                        _sbss = .
                 0x20000054                        __bss_start__ = _sbss
  *(.bss)
@@ -4059,7 +4060,7 @@ LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/
                 0x20000df8                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000df8      0x100 load address 0x08006cc0
+                0x20000df8      0x100 load address 0x08006ce4
                 0x20000df8                        . = ALIGN (0x4)
                 0x20000df8                        PROVIDE (end = .)
                 [!provide]                        PROVIDE (_end = .)
@@ -4176,49 +4177,49 @@ LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/
 LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a
 LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/thumb/v7-m/nofp/libgcc.a
 
-.debug_info     0x00000000     0x6ce5
+.debug_info     0x00000000     0x6c0f
  .debug_info    0x00000000      0x3e7 z_build/a_application/stm32f1xx_it.o
  .debug_info    0x000003e7      0x266 z_build/b_middleware/debugger/debugger.o
  .debug_info    0x0000064d      0x278 z_build/b_middleware/ota_engine/ota_engine.o
- .debug_info    0x000008c5      0x244 z_build/b_middleware/processor/processor.o
- .debug_info    0x00000b09      0x749 z_build/b_middleware/usart_engine/usart_engine.o
- .debug_info    0x00001252      0x38f z_build/b_middleware/w25q32_engine/w25q32_engine.o
- .debug_info    0x000015e1      0x23e z_build/b_middleware/spi_engine/spi_engine.o
- .debug_info    0x0000181f      0x489 z_build/c_hardware/Device/src/system_stm32f10x.o
- .debug_info    0x00001ca8      0x5d7 z_build/c_hardware/Device/src/systick.o
- .debug_info    0x0000227f      0xbaa z_build/c_hardware/Device/src/hardware.o
- .debug_info    0x00002e29      0x858 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
- .debug_info    0x00003681      0x4fa z_build/c_hardware/SPL/src/misc.o
- .debug_info    0x00003b7b      0x6da z_build/c_hardware/SPL/src/stm32f10x_gpio.o
- .debug_info    0x00004255      0x773 z_build/c_hardware/SPL/src/stm32f10x_flash.o
- .debug_info    0x000049c8      0x9f1 z_build/c_hardware/SPL/src/stm32f10x_usart.o
- .debug_info    0x000053b9      0x908 z_build/c_hardware/SPL/src/stm32f10x_spi.o
- .debug_info    0x00005cc1      0x18f z_build/y_thirdparty/string_handler/string_handler.o
- .debug_info    0x00005e50      0xdbd z_build/y_thirdparty/lwrb/lwrb.o
- .debug_info    0x00006c0d       0xa8 z_build/root/app.o
- .debug_info    0x00006cb5       0x30 z_build/startup/startup.o
+ .debug_info    0x000008c5      0x178 z_build/b_middleware/processor/processor.o
+ .debug_info    0x00000a3d      0x73f z_build/b_middleware/usart_engine/usart_engine.o
+ .debug_info    0x0000117c      0x38f z_build/b_middleware/w25q32_engine/w25q32_engine.o
+ .debug_info    0x0000150b      0x23e z_build/b_middleware/spi_engine/spi_engine.o
+ .debug_info    0x00001749      0x489 z_build/c_hardware/Device/src/system_stm32f10x.o
+ .debug_info    0x00001bd2      0x5d7 z_build/c_hardware/Device/src/systick.o
+ .debug_info    0x000021a9      0xbaa z_build/c_hardware/Device/src/hardware.o
+ .debug_info    0x00002d53      0x858 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+ .debug_info    0x000035ab      0x4fa z_build/c_hardware/SPL/src/misc.o
+ .debug_info    0x00003aa5      0x6da z_build/c_hardware/SPL/src/stm32f10x_gpio.o
+ .debug_info    0x0000417f      0x773 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+ .debug_info    0x000048f2      0x9f1 z_build/c_hardware/SPL/src/stm32f10x_usart.o
+ .debug_info    0x000052e3      0x908 z_build/c_hardware/SPL/src/stm32f10x_spi.o
+ .debug_info    0x00005beb      0x18f z_build/y_thirdparty/string_handler/string_handler.o
+ .debug_info    0x00005d7a      0xdbd z_build/y_thirdparty/lwrb/lwrb.o
+ .debug_info    0x00006b37       0xa8 z_build/root/app.o
+ .debug_info    0x00006bdf       0x30 z_build/startup/startup.o
 
-.debug_abbrev   0x00000000     0x1ea0
+.debug_abbrev   0x00000000     0x1e3e
  .debug_abbrev  0x00000000      0x1b2 z_build/a_application/stm32f1xx_it.o
  .debug_abbrev  0x000001b2      0x158 z_build/b_middleware/debugger/debugger.o
  .debug_abbrev  0x0000030a      0x12c z_build/b_middleware/ota_engine/ota_engine.o
- .debug_abbrev  0x00000436      0x144 z_build/b_middleware/processor/processor.o
- .debug_abbrev  0x0000057a      0x2a6 z_build/b_middleware/usart_engine/usart_engine.o
- .debug_abbrev  0x00000820      0x186 z_build/b_middleware/w25q32_engine/w25q32_engine.o
- .debug_abbrev  0x000009a6      0x114 z_build/b_middleware/spi_engine/spi_engine.o
- .debug_abbrev  0x00000aba      0x180 z_build/c_hardware/Device/src/system_stm32f10x.o
- .debug_abbrev  0x00000c3a      0x1de z_build/c_hardware/Device/src/systick.o
- .debug_abbrev  0x00000e18      0x20a z_build/c_hardware/Device/src/hardware.o
- .debug_abbrev  0x00001022      0x1e3 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
- .debug_abbrev  0x00001205      0x17f z_build/c_hardware/SPL/src/misc.o
- .debug_abbrev  0x00001384      0x217 z_build/c_hardware/SPL/src/stm32f10x_gpio.o
- .debug_abbrev  0x0000159b      0x1b6 z_build/c_hardware/SPL/src/stm32f10x_flash.o
- .debug_abbrev  0x00001751      0x1bf z_build/c_hardware/SPL/src/stm32f10x_usart.o
- .debug_abbrev  0x00001910      0x1dc z_build/c_hardware/SPL/src/stm32f10x_spi.o
- .debug_abbrev  0x00001aec      0x116 z_build/y_thirdparty/string_handler/string_handler.o
- .debug_abbrev  0x00001c02      0x21e z_build/y_thirdparty/lwrb/lwrb.o
- .debug_abbrev  0x00001e20       0x5c z_build/root/app.o
- .debug_abbrev  0x00001e7c       0x24 z_build/startup/startup.o
+ .debug_abbrev  0x00000436       0xe2 z_build/b_middleware/processor/processor.o
+ .debug_abbrev  0x00000518      0x2a6 z_build/b_middleware/usart_engine/usart_engine.o
+ .debug_abbrev  0x000007be      0x186 z_build/b_middleware/w25q32_engine/w25q32_engine.o
+ .debug_abbrev  0x00000944      0x114 z_build/b_middleware/spi_engine/spi_engine.o
+ .debug_abbrev  0x00000a58      0x180 z_build/c_hardware/Device/src/system_stm32f10x.o
+ .debug_abbrev  0x00000bd8      0x1de z_build/c_hardware/Device/src/systick.o
+ .debug_abbrev  0x00000db6      0x20a z_build/c_hardware/Device/src/hardware.o
+ .debug_abbrev  0x00000fc0      0x1e3 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+ .debug_abbrev  0x000011a3      0x17f z_build/c_hardware/SPL/src/misc.o
+ .debug_abbrev  0x00001322      0x217 z_build/c_hardware/SPL/src/stm32f10x_gpio.o
+ .debug_abbrev  0x00001539      0x1b6 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+ .debug_abbrev  0x000016ef      0x1bf z_build/c_hardware/SPL/src/stm32f10x_usart.o
+ .debug_abbrev  0x000018ae      0x1dc z_build/c_hardware/SPL/src/stm32f10x_spi.o
+ .debug_abbrev  0x00001a8a      0x116 z_build/y_thirdparty/string_handler/string_handler.o
+ .debug_abbrev  0x00001ba0      0x21e z_build/y_thirdparty/lwrb/lwrb.o
+ .debug_abbrev  0x00001dbe       0x5c z_build/root/app.o
+ .debug_abbrev  0x00001e1a       0x24 z_build/startup/startup.o
 
 .debug_aranges  0x00000000      0x890
  .debug_aranges
@@ -4383,35 +4384,35 @@ LOAD /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/
  .debug_macro   0x0000e009      0x174 z_build/y_thirdparty/lwrb/lwrb.o
  .debug_macro   0x0000e17d      0x297 z_build/root/app.o
 
-.debug_line     0x00000000     0x740e
+.debug_line     0x00000000     0x7411
  .debug_line    0x00000000      0x61b z_build/a_application/stm32f1xx_it.o
  .debug_line    0x0000061b      0x575 z_build/b_middleware/debugger/debugger.o
  .debug_line    0x00000b90      0x5b7 z_build/b_middleware/ota_engine/ota_engine.o
- .debug_line    0x00001147      0x5ad z_build/b_middleware/processor/processor.o
- .debug_line    0x000016f4      0x6cf z_build/b_middleware/usart_engine/usart_engine.o
- .debug_line    0x00001dc3      0x579 z_build/b_middleware/w25q32_engine/w25q32_engine.o
- .debug_line    0x0000233c      0x355 z_build/b_middleware/spi_engine/spi_engine.o
- .debug_line    0x00002691      0x4ca z_build/c_hardware/Device/src/system_stm32f10x.o
- .debug_line    0x00002b5b      0x3ef z_build/c_hardware/Device/src/systick.o
- .debug_line    0x00002f4a      0x47d z_build/c_hardware/Device/src/hardware.o
- .debug_line    0x000033c7      0x8d0 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
- .debug_line    0x00003c97      0x419 z_build/c_hardware/SPL/src/misc.o
- .debug_line    0x000040b0      0x704 z_build/c_hardware/SPL/src/stm32f10x_gpio.o
- .debug_line    0x000047b4      0x931 z_build/c_hardware/SPL/src/stm32f10x_flash.o
- .debug_line    0x000050e5      0x891 z_build/c_hardware/SPL/src/stm32f10x_usart.o
- .debug_line    0x00005976      0x76a z_build/c_hardware/SPL/src/stm32f10x_spi.o
- .debug_line    0x000060e0      0x35d z_build/y_thirdparty/string_handler/string_handler.o
- .debug_line    0x0000643d      0xa08 z_build/y_thirdparty/lwrb/lwrb.o
- .debug_line    0x00006e45      0x551 z_build/root/app.o
- .debug_line    0x00007396       0x78 z_build/startup/startup.o
+ .debug_line    0x00001147      0x5a9 z_build/b_middleware/processor/processor.o
+ .debug_line    0x000016f0      0x6d6 z_build/b_middleware/usart_engine/usart_engine.o
+ .debug_line    0x00001dc6      0x579 z_build/b_middleware/w25q32_engine/w25q32_engine.o
+ .debug_line    0x0000233f      0x355 z_build/b_middleware/spi_engine/spi_engine.o
+ .debug_line    0x00002694      0x4ca z_build/c_hardware/Device/src/system_stm32f10x.o
+ .debug_line    0x00002b5e      0x3ef z_build/c_hardware/Device/src/systick.o
+ .debug_line    0x00002f4d      0x47d z_build/c_hardware/Device/src/hardware.o
+ .debug_line    0x000033ca      0x8d0 z_build/c_hardware/SPL/src/stm32f10x_rcc.o
+ .debug_line    0x00003c9a      0x419 z_build/c_hardware/SPL/src/misc.o
+ .debug_line    0x000040b3      0x704 z_build/c_hardware/SPL/src/stm32f10x_gpio.o
+ .debug_line    0x000047b7      0x931 z_build/c_hardware/SPL/src/stm32f10x_flash.o
+ .debug_line    0x000050e8      0x891 z_build/c_hardware/SPL/src/stm32f10x_usart.o
+ .debug_line    0x00005979      0x76a z_build/c_hardware/SPL/src/stm32f10x_spi.o
+ .debug_line    0x000060e3      0x35d z_build/y_thirdparty/string_handler/string_handler.o
+ .debug_line    0x00006440      0xa08 z_build/y_thirdparty/lwrb/lwrb.o
+ .debug_line    0x00006e48      0x551 z_build/root/app.o
+ .debug_line    0x00007399       0x78 z_build/startup/startup.o
 
 .debug_str      0x00000000    0x4317a
  .debug_str     0x00000000    0x4317a z_build/a_application/stm32f1xx_it.o
                               0x3fdb4 (size before relaxing)
  .debug_str     0x0004317a    0x3fc62 z_build/b_middleware/debugger/debugger.o
  .debug_str     0x0004317a    0x3fd2a z_build/b_middleware/ota_engine/ota_engine.o
- .debug_str     0x0004317a    0x3fc88 z_build/b_middleware/processor/processor.o
- .debug_str     0x0004317a    0x3fee2 z_build/b_middleware/usart_engine/usart_engine.o
+ .debug_str     0x0004317a    0x3fc38 z_build/b_middleware/processor/processor.o
+ .debug_str     0x0004317a    0x3fee0 z_build/b_middleware/usart_engine/usart_engine.o
  .debug_str     0x0004317a    0x3b574 z_build/b_middleware/w25q32_engine/w25q32_engine.o
  .debug_str     0x0004317a    0x3ad74 z_build/b_middleware/spi_engine/spi_engine.o
  .debug_str     0x0004317a    0x3ae12 z_build/c_hardware/Device/src/system_stm32f10x.o
@@ -4716,11 +4717,9 @@ GPIO_ReadOutputData                               z_build/c_hardware/SPL/src/stm
 GPIO_ReadOutputDataBit                            z_build/c_hardware/SPL/src/stm32f10x_gpio.o
 GPIO_ResetBits                                    z_build/c_hardware/SPL/src/stm32f10x_gpio.o
                                                   z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                                                  z_build/b_middleware/processor/processor.o
 GPIO_SetBits                                      z_build/c_hardware/SPL/src/stm32f10x_gpio.o
                                                   z_build/c_hardware/Device/src/hardware.o
                                                   z_build/b_middleware/w25q32_engine/w25q32_engine.o
-                                                  z_build/b_middleware/processor/processor.o
 GPIO_StructInit                                   z_build/c_hardware/SPL/src/stm32f10x_gpio.o
 GPIO_Write                                        z_build/c_hardware/SPL/src/stm32f10x_gpio.o
 GPIO_WriteBit                                     z_build/c_hardware/SPL/src/stm32f10x_gpio.o
@@ -5254,6 +5253,7 @@ _write_r                                          /home/bdang/toolchains/gcc-arm
                                                   /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-stdio.o)
 atexit                                            /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o
 breakp                                            z_build/b_middleware/debugger/debugger.o
+                                                  z_build/b_middleware/usart_engine/usart_engine.o
 cur_w25_addr                                      z_build/b_middleware/w25q32_engine/w25q32_engine.o
                                                   z_build/b_middleware/usart_engine/usart_engine.o
 data_idx                                          z_build/b_middleware/ota_engine/ota_engine.o
@@ -5262,8 +5262,6 @@ debug_printf                                      z_build/b_middleware/debugger/
                                                   z_build/b_middleware/usart_engine/usart_engine.o
                                                   z_build/b_middleware/processor/processor.o
 delay_ms                                          z_build/c_hardware/Device/src/systick.o
-                                                  z_build/b_middleware/usart_engine/usart_engine.o
-                                                  z_build/b_middleware/processor/processor.o
 end                                               /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libnosys.a(sbrk.o)
 errno                                             /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a(libc_a-reent.o)
                                                   /home/bdang/toolchains/gcc-arm-none-eabi-14.3/bin/../lib/gcc/arm-none-eabi/14.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libnosys.a(write.o)

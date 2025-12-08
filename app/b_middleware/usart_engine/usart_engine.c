@@ -46,6 +46,7 @@ void esp32_parse(void){
 
         if (c == '\n'){
             line_buff[line_len] = '\0';
+            DEBUG_PRINT("RES: %s\n", line_buff);
             esp32_line_process(line_buff);
             line_len = 0;
         }
@@ -61,23 +62,27 @@ static void esp32_line_process(const char* esp32_line){
         ota_received = 0;
         cur_w25_addr = 0x000000;
         W25Q32_EraseChip();
-        delay_ms(50);
+        usart_sendstring(USART_ESP, "OTA_BEGIN_ACK\n");
         return;
     }
 
     if (strstr(esp32_line, "OTA_SIZE:")){
-        DEBUG_PRINT("%s", esp32_line);
         ota_total_size = parse_ota_size(esp32_line);
-        if (ota_total_size == 0)
-            return;
+        if (ota_total_size == 0){
+            return;             /*<! DONT RESPONE, ESP32 WILL TIMEOUT */
+        }
         set_fw_size(ota_total_size);
         DEBUG_PRINT("\r\nSIZE IS: %lu\r\n", ota_total_size);
+        data_idx = 0;
+        ota_received = 0;
+        usart_sendstring(USART_ESP, "OTA_SIZE_ACK\n");
         ota_state = OTA_READING_STATE;
         return;
     }
 
     if (strstr(esp32_line, "OTA_END")){
-        DEBUG_PRINT("%s", esp32_line);
+        breakp();
+
         ota_state = OTA_DONE_STATE;
         set_fw_flag(OTA_FLAG_READY);
         NVIC_SystemReset(); 

@@ -147,9 +147,6 @@ void clear_ota_flag(void)
     }
 
     FLASH_Lock();
-
-    uint32_t verify = *((uint32_t*)FW_FLAG_ADDR);
-    DEBUG_PRINT("Flag after clear: 0x%08lX (status=%d)\r\n", verify, st);
 }
 
 bool check_ota(void){
@@ -163,6 +160,7 @@ int main(void)
 {
   hardware_init();
   meta_init();
+  DEBUG_PRINT("Bootloader run\r\n");
 
   if (check_ota()){
 
