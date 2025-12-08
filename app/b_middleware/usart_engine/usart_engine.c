@@ -46,7 +46,6 @@ void esp32_parse(void){
 
         if (c == '\n'){
             line_buff[line_len] = '\0';
-            DEBUG_PRINT("RES: %s\n", line_buff);
             esp32_line_process(line_buff);
             line_len = 0;
         }
@@ -81,8 +80,6 @@ static void esp32_line_process(const char* esp32_line){
     }
 
     if (strstr(esp32_line, "OTA_END")){
-        breakp();
-
         ota_state = OTA_DONE_STATE;
         set_fw_flag(OTA_FLAG_READY);
         NVIC_SystemReset(); 
